@@ -43,3 +43,10 @@
 <ng-container *ngIf="showQuestionData">
     <app-question-data></app-question-data>
 </ng-container>
+
+
+<ul>
+    <li *ngFor="let questions of questions | async">
+        <pre>{{ questions | json }}</pre>
+    </li>
+</ul>

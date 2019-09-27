@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 
 
@@ -112,13 +114,17 @@ export class QuestionsListComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
-  constructor() { }
-
+  public questions: Observable<any[]>;
+  constructor(db: AngularFirestore) {
+    this.questions = db.collection('/Questions').valueChanges();
+  }
   ngOnInit() {
   }
+
 
   showQuestion() {
     this.showQuestionData = true;
   }
+
 
 }
