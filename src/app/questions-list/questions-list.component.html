@@ -1,52 +1,51 @@
 <ng-container *ngIf="!showQuestionData">
-    <div class="form-group form-inline">
-        Full text search: <input class="form-control ml-2" type="text" ngModel="questionFilter" />
-    </div>
+    <ng-container *ngIf="questions && questions.length !=0">
+        <div class="form-group form-inline">
+            Full text search: <input class="form-control ml-2" type="text" [(ngModel)]="questionFilter"
+                placeholder="Search by name" />
+        </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Country</th>
-                <th scope="col">Area</th>
-                <th scope="col">Population</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let country of countries">
-                <th scope="row">{{ country.id }}</th>
-                <td>
-                    <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2"
-                        style="width: 20px">
-                    {{ country.name }}
-                </td>
-                <td>{{ country.area | number}}</td>
-                <td>{{ country.population | number }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Tages</th>
+                    <th scope="col">Number of answers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let question of questions; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>
+                        {{ question.theQuestion }}
+                    </td>
+                    <td>{{ question.tages }}</td>
+                    <td>{{ question.answers ? question.answers.length : 0 }}</td>
+                    <td>
+                        <i class="material-icons" (click)="viewDetails(question)">
+                            remove_red_eye
+                        </i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <div class="d-flex justify-content-between p-2">
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-        </ngb-pagination>
+        <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+            </ngb-pagination>
 
-        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-            <option [ngValue]="2">2 items per page</option>
-            <option [ngValue]="4">4 items per page</option>
-            <option [ngValue]="6">6 items per page</option>
-        </select>
-    </div>
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                <option [ngValue]="2">2 items per page</option>
+                <option [ngValue]="4">4 items per page</option>
+                <option [ngValue]="6">6 items per page</option>
+            </select>
+        </div>
 
-    <button (click)="showQuestion()"></button>
+        <button (click)="showQuestion()">Add new</button>
+    </ng-container>
 </ng-container>
 
 <ng-container *ngIf="showQuestionData">
     <app-question-data></app-question-data>
 </ng-container>
-
-
-<ul>
-    <li *ngFor="let questions of questions | async">
-        <pre>{{ questions | json }}</pre>
-    </li>
-</ul>
