@@ -1,0 +1,59 @@
+<!-- Material form contact -->
+<mat-card>
+
+    <mat-card-title class="info-color white-text text-center py-4">
+        <h5>
+            <strong>Contact us</strong>
+        </h5>
+    </mat-card-title>
+
+
+    <!--Card content-->
+    <mat-card-content class="px-lg-5 pt-0">
+
+        <!-- Form -->
+        <form class="text-center" style="color: #757575;">
+
+            <!-- Name -->
+            <div class="md-form mt-3">
+                <input type="text" id="materialContactFormName" class="form-control" matInput>
+                <label for="materialContactFormName">Name</label>
+            </div>
+
+            <!-- E-mail -->
+            <div class="md-form">
+                <input type="email" id="materialContactFormEmail" class="form-control" matInput>
+                <label for="materialContactFormEmail">E-mail</label>
+            </div>
+
+            <!-- Subject -->
+            <span>Subject</span>
+            <div class="row">
+                mat select
+            </div>
+
+            <!--Message-->
+            <div class="md-form">
+                <textarea type="text" id="materialContactFormMessage" class="form-control md-textarea"
+                    matInput></textarea>
+                <label for="materialContactFormMessage">Message</label>
+            </div>
+
+            <!-- Copy -->
+            <div class="row">
+                <div class="col-md-6 mx-auto d-flex justify-content-center">
+                    <mat-checkbox>Send me a copy of this message</mat-checkbox>
+                </div>
+            </div>
+
+            <!-- Send button -->
+            <button matBtn color="info" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect"
+                matWavesEffect type="submit">Send</button>
+
+        </form>
+        <!-- Form -->
+
+    </mat-card-content>
+
+</mat-card>
+<!-- Material form contact -->
