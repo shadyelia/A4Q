@@ -47,5 +47,5 @@
 </ng-container>
 
 <ng-container *ngIf="showQuestionData">
-    <app-question-data></app-question-data>
+    <app-question-data (ended)="closeQuestion($event)"></app-question-data>
 </ng-container>

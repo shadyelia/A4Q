@@ -128,7 +128,7 @@ export class QuestionsListComponent implements OnInit {
       .list('/Questions')
       .valueChanges()
       .subscribe(res => {
-        debugger
+        this.questions = [];
         res.forEach(element => {
           this.questions.push(element);
         });
@@ -140,8 +140,13 @@ export class QuestionsListComponent implements OnInit {
     this.showQuestionData = true;
   }
 
+  closeQuestion() {
+    this.showQuestionData = false;
+  }
+
   viewDetails(question) {
     console.log(question)
   }
+
 
 }
