@@ -140,7 +140,7 @@ export class QuestionsListComponent implements OnInit {
     this.showQuestionData = true;
   }
 
-  closeQuestion() {
+  closeQuestion($event: any) {
     this.showQuestionData = false;
   }
 
