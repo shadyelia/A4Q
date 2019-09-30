@@ -19,7 +19,7 @@ export class QuestionDataComponent implements OnInit {
   $key = "";
   @Output() ended = new EventEmitter<boolean>();
 
-  constructor(private db: AngularFireDatabase, private fb: FormBuilder) {}
+  constructor(private db: AngularFireDatabase, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createForm();

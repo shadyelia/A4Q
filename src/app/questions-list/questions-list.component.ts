@@ -116,7 +116,7 @@ export class QuestionsListComponent implements OnInit {
   constructor(
     private db: AngularFireDatabase,
     private questionService: QuestionService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.filldata();
@@ -146,9 +146,6 @@ export class QuestionsListComponent implements OnInit {
     this.showQuestionData = true;
   }
 
-  closeQuestion($event: any) {
-    this.showQuestionData = false;
-  }
 
   viewDetails(question) {
     localStorage.setItem("question", JSON.stringify(question));
@@ -157,5 +154,13 @@ export class QuestionsListComponent implements OnInit {
 
   delete($key) {
     this.db.object("/Questions/" + $key).remove();
+  }
+
+
+
+  closeQuestion($event: any) {
+    this.showQuestionData = false;
+    localStorage.setItem("question", undefined);
+    this.editMode = false;
   }
 }
