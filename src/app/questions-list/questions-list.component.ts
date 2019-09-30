@@ -102,6 +102,7 @@ export class QuestionsListComponent implements OnInit {
   pageSize = 4;
   collectionSize = COUNTRIES.length;
   showQuestionData: boolean = false;
+  editMode: boolean = false;
 
   get countries(): Country[] {
     return COUNTRIES.map((country, i) => ({ id: i + 1, ...country })).slice(
@@ -139,8 +140,6 @@ export class QuestionsListComponent implements OnInit {
           this.questions.push(questionObject);
         });
       });
-
-    this.questionService.getQuestions().subscribe(res => {});
   }
 
   showQuestion() {
@@ -152,7 +151,8 @@ export class QuestionsListComponent implements OnInit {
   }
 
   viewDetails(question) {
-    console.log(question);
+    localStorage.setItem("question", JSON.stringify(question));
+    this.editMode = true;
   }
 
   delete($key) {

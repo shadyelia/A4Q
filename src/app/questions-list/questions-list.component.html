@@ -1,4 +1,4 @@
-<ng-container *ngIf="!showQuestionData">
+<ng-container *ngIf="!showQuestionData && !editMode">
     <ng-container *ngIf="questions && questions.length !=0">
         <div class="form-group form-inline">
             Full text search: <input class="form-control ml-2" type="text" [(ngModel)]="questionFilter"
@@ -51,6 +51,6 @@
     </ng-container>
 </ng-container>
 
-<ng-container *ngIf="showQuestionData">
-    <app-question-data (ended)="closeQuestion($event)"></app-question-data>
+<ng-container *ngIf="showQuestionData || editMode">
+    <app-question-data (ended)="closeQuestion($event)" [editMode]="editMode"></app-question-data>
 </ng-container>
