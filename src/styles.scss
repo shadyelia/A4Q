@@ -13,3 +13,26 @@ body {
   position: absolute;
   right: 0;
 }
+
+.greenColor{
+  color:greenyellow;
+  cursor: pointer;
+}
+
+.redColor{
+  color: rgb(255, 187, 0);
+  cursor: pointer;
+}
+
+.backGroundcolorGreen{
+ background-color: greenyellow;
+ text-align: center;
+ cursor: pointer;
+}
+
+.backGroundcolorRed{
+  background-color: rgb(255, 187, 0);
+  text-align: center;
+  cursor: pointer;
+  left: 6px;
+}

@@ -87,4 +87,9 @@ export class QuestionDataComponent implements OnInit {
     this.questionForm.reset();
     this.ended.emit(true);
   }
+
+  close() {
+    this.questionForm.reset();
+    this.ended.emit(true);
+  }
 }

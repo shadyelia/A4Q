@@ -1,13 +1,26 @@
-<ng-container *ngIf="!showQuestionData && !editMode">
-    <div class="form-group form-inline">
-        Full text search: <input class="form-control ml-2" type="text" [(ngModel)]="questionFilter"
-            placeholder="Search by name" />
-        <button class="addButton" mat-button (click)="showQuestion()">
+<ng-container>
+    <div class="row">
+        <div class="form-group form-inline col-6">
+            Full text search: <input class="form-control ml-2" type="text" [(ngModel)]="questionFilter"
+                placeholder="Search by name" />
+        </div>
+        <div class="form-group form-inline col-5">
+            <input class="form-control ml-2" type="text" [(ngModel)]="questionFilter" placeholder="Search by tag" />
+        </div>
+        <button mat-button (click)="showQuestion()">
             <i class="material-icons">
                 add
             </i>
         </button>
     </div>
+
+
+    <div>
+        <ng-container *ngIf="showQuestionData || editMode">
+            <app-question-data (ended)="closeQuestion($event)" [editMode]="editMode"></app-question-data>
+        </ng-container>
+    </div>
+
     <ng-container *ngIf="questions && questions.length !=0">
         <table class="table table-striped">
             <thead>
@@ -26,12 +39,12 @@
                     </td>
                     <td>{{ question.tages }}</td>
                     <td>{{ question.answers ? question.answers.length : 0 }}</td>
-                    <td>
+                    <td class="greenColor">
                         <i class="material-icons" (click)="viewDetails(question)">
                             remove_red_eye
                         </i>
                     </td>
-                    <td>
+                    <td class="redColor">
                         <i class="material-icons" (click)="delete(question.$key)">
                             delete
                         </i>
@@ -52,8 +65,4 @@
         </div> -->
 
     </ng-container>
-</ng-container>
-
-<ng-container *ngIf="showQuestionData || editMode">
-    <app-question-data (ended)="closeQuestion($event)" [editMode]="editMode"></app-question-data>
 </ng-container>
