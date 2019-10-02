@@ -23,11 +23,12 @@ export class QuestionsListComponent implements OnInit {
   // }
 
   questions = [];
+  questionsSelected = [];
 
   constructor(
     private db: AngularFireDatabase,
     private questionService: QuestionService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.filldata();
@@ -39,6 +40,7 @@ export class QuestionsListComponent implements OnInit {
       .snapshotChanges()
       .subscribe(actions => {
         this.questions = [];
+        this.questionsSelected = [];
         actions.forEach(action => {
           const value = action.payload.val();
           const id = action.payload.key;
@@ -49,6 +51,7 @@ export class QuestionsListComponent implements OnInit {
             answers: value["answers"]
           };
           this.questions.push(questionObject);
+          this.questionsSelected.push(questionObject);
         });
         this.collectionSize = this.questions.length;
       });
@@ -65,6 +68,17 @@ export class QuestionsListComponent implements OnInit {
 
   delete($key) {
     this.db.object("/Questions/" + $key).remove();
+  }
+
+  search() {
+    if (this.questionFilter == '') {
+      this.questionsSelected = this.questions;
+    } else if (this.questionFilter != '') {
+      this.questionsSelected = [];
+      this.questionsSelected = this.questions.filter(question =>
+        question.theQuestion.toLowerCase().includes(this.questionFilter.toLowerCase())
+      );
+    }
   }
 
   closeQuestion($event: any) {

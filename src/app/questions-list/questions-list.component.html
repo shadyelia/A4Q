@@ -1,12 +1,12 @@
 <ng-container>
     <div class="row">
-        <div class="form-group form-inline col-6">
+        <div class="form-group form-inline col-11">
             Full text search: <input class="form-control ml-2" type="text" [(ngModel)]="questionFilter"
-                placeholder="Search by name" />
+                placeholder="Search by name" (keyup)="search()" />
         </div>
-        <div class="form-group form-inline col-5">
-            <input class="form-control ml-2" type="text" [(ngModel)]="questionFilter" placeholder="Search by tag" />
-        </div>
+        <!-- <div class="form-group form-inline col-5">
+            <input class="form-control ml-2" type="text" placeholder="Search by tag" />
+        </div> -->
         <button mat-button (click)="showQuestion()">
             <i class="material-icons">
                 add
@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let question of questions; let i = index">
+                <tr *ngFor="let question of questionsSelected; let i = index">
                     <th scope="row">{{i+1}}</th>
                     <td>
                         {{ question.theQuestion }}
