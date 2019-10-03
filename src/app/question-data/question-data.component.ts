@@ -64,6 +64,24 @@ export class QuestionDataComponent implements OnInit {
     this.answer = "";
   }
 
+  deleteTages(tag) {
+    if (tag) {
+      let index = this.tages.indexOf(
+        tag
+      );
+      this.tages.splice(index, 1);
+      this.questionForm.controls.tages.setValue(this.tages);
+    }
+  }
+
+  deleteAnswers(answer) {
+    let index = this.answers.indexOf(
+      answer
+    );
+    this.answers.splice(index, 1);
+    this.questionForm.controls.answers.setValue(this.answers);
+  }
+
   save() {
     if (this.questionForm.valid) {
       if (this.editMode) {
@@ -87,6 +105,9 @@ export class QuestionDataComponent implements OnInit {
     this.questionForm.reset();
     this.ended.emit(true);
   }
+
+
+
 
   close() {
     this.questionForm.reset();

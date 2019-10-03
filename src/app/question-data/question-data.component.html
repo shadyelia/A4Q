@@ -32,6 +32,11 @@
                 <ul>
                     <li *ngFor="let tag of tages;">
                         {{tag}}
+                        <td class="redColor">
+                            <i class="material-icons" (click)="deleteTages(tag)">
+                                delete
+                            </i>
+                        </td>
                     </li>
                 </ul>
                 <label for="materialContactFormName">tages</label>
@@ -49,6 +54,11 @@
                 <ul>
                     <li *ngFor="let answer of answers;">
                         {{answer}}
+                        <td class="redColor">
+                            <i class="material-icons" (click)="deleteAnswers(answer)">
+                                delete
+                            </i>
+                        </td>
                     </li>
                 </ul>
                 <label for="materialContactFormName">answers</label>
