@@ -8,7 +8,6 @@ import { QuestionService } from "../services/question.service";
   styleUrls: ["./questions-list.component.scss"]
 })
 export class QuestionsListComponent implements OnInit {
-  questionFilter = "";
   page = 1;
   pageSize = 4;
   showQuestionData: boolean = false;
@@ -24,11 +23,13 @@ export class QuestionsListComponent implements OnInit {
 
   questions = [];
   questionsSelected = [];
+  questionFilter = "";
+  tagFilter = "";
 
   constructor(
     private db: AngularFireDatabase,
     private questionService: QuestionService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.filldata();
@@ -71,13 +72,31 @@ export class QuestionsListComponent implements OnInit {
   }
 
   search() {
-    if (this.questionFilter == '') {
+    if (this.questionFilter == "") {
       this.questionsSelected = this.questions;
-    } else if (this.questionFilter != '') {
+    } else if (this.questionFilter != "") {
       this.questionsSelected = [];
       this.questionsSelected = this.questions.filter(question =>
-        question.theQuestion.toLowerCase().includes(this.questionFilter.toLowerCase())
+        question.theQuestion
+          .toLowerCase()
+          .includes(this.questionFilter.toLowerCase())
       );
+    }
+  }
+
+  searchByTag() {
+    if (this.tagFilter == "") {
+      this.questionsSelected = this.questions;
+    } else if (this.tagFilter != "") {
+      this.questionsSelected = [];
+      this.questions.forEach(question => {
+        if (question.tages && question.tages.length != 0) {
+          question.tages.forEach(tag => {
+            if (tag.toLowerCase().includes(this.tagFilter.toLowerCase()))
+              this.questionsSelected.push(question);
+          });
+        }
+      });
     }
   }
 
